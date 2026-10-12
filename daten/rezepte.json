@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "rezepte": [
+    {
+      "id": "linsen-bolognese",
+      "art": "rezept",
+      "name": "Linsen-Bolognese mit Nudeln",
+      "personen": 2,
+      "zeit": "30–40 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "braune-linsen-trocken", "menge": 150, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "nudeln", "menge": 180, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": false, "optionen": [
+          { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [],
+      "weitere": [
+        { "name": "Wasser oder Gemüsebrühe", "menge": [350, 450], "einheit": "ml" }
+      ],
+      "schritte": [
+        "Linsen in Wasser oder Brühe nach Packungsangabe weich garen.",
+        "Basis und, falls gewünscht, den Gemüsemix zugeben und 8–10 Min. köcheln, bis alles dampfend heiß ist.",
+        "Nudeln separat kochen und mit der Sauce servieren."
+      ],
+      "hinweise": [
+        "Die eingefrorene Basis ist bereits gewürzt."
+      ]
+    },
+    {
+      "id": "falafel-couscous-bowl",
+      "art": "rezept",
+      "name": "Falafel-Couscous-Bowl mit Tomatendip",
+      "personen": 2,
+      "zeit": "ca. 45 Min.",
+      "plaetze": [
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "kichererbsen-trocken", "menge": 150, "einheit": "g", "vorbereitung": "12–18 Std. einweichen" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "couscous", "menge": 120, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": false, "optionen": [
+          { "zutat": "paprika-zwiebel-mix", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "rot", "pflicht": false, "hinweis": "als Dip", "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "mehl", "menge": 1, "einheit": "EL" },
+        { "zutat": "zwiebeln" },
+        { "zutat": "knoblauch" },
+        { "zutat": "gewuerze" },
+        { "zutat": "gemuesebruehe" }
+      ],
+      "weitere": [],
+      "schritte": [
+        "Kichererbsen 12–18 Std. einweichen und abgießen, nicht kochen.",
+        "Roh fein zerkleinern, mit Zwiebel, Knoblauch, Gewürzen und Mehl binden und kleine Falafel formen.",
+        "Bei 200 °C ca. 20–25 Min. backen, dabei einmal wenden.",
+        "Couscous mit heißer Brühe übergießen und quellen lassen.",
+        "Falls gewünscht, Gemüse anbraten und die erhitzte Basis als Dip dazugeben."
+      ],
+      "hinweise": [
+        "Hier ist bewusst nur „trocken“ erlaubt: Falafel gelingen nur aus eingeweichten, ungekochten Kichererbsen. Die schnelle Variante mit TK-Falafel ist „Gemüse-Couscous mit Falafel“."
+      ]
+    },
+    {
+      "id": "kichererbsen-tomaten-pasta",
+      "art": "rezept",
+      "name": "Kichererbsen-Tomaten-Pasta",
+      "personen": 2,
+      "zeit": "20 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
+          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "kichererbsen-dose", "menge": 200, "einheit": "g" },
+          { "zutat": "kichererbsen-gekocht", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "nudeln", "menge": 180, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [],
+      "weitere": [
+        { "name": "Nudelwasser", "menge": [100, 150], "einheit": "ml" }
+      ],
+      "schritte": [
+        "Nudeln kochen und etwas Nudelwasser aufheben.",
+        "Basis erhitzen und die Kichererbsen zugeben. Kichererbsen aus der Dose vorher abgießen und abspülen.",
+        "8–10 Min. köcheln, bei Bedarf mit Nudelwasser verdünnen.",
+        "Mit den Nudeln vermengen."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "spinat-tomaten-pasta",
+      "art": "rezept",
+      "name": "Spinat-Tomaten-Pasta",
+      "personen": 2,
+      "zeit": "20 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
+          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": true, "optionen": [
+          { "zutat": "spinat", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "nudeln", "menge": 180, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "knoblauch", "optional": true },
+        { "zutat": "gewuerze", "name": "Chili", "optional": true }
+      ],
+      "weitere": [],
+      "schritte": [
+        "Nudeln kochen.",
+        "Basis erhitzen.",
+        "Spinat zugeben und garen, bis alles vollständig heiß ist.",
+        "Abschmecken und mit den Nudeln servieren."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "rotes-linsen-dal",
+      "art": "rezept",
+      "name": "Rotes Linsen-Dal mit Reis",
+      "personen": 2,
+      "zeit": "25 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "rote-linsen-trocken", "menge": 150, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "reis", "menge": 150, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": false, "optionen": [
+          { "zutat": "spinat", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [],
+      "weitere": [
+        { "name": "Wasser oder Gemüsebrühe", "menge": [350, 450], "einheit": "ml" }
+      ],
+      "schritte": [
+        "Reis kochen.",
+        "Linsen in Wasser oder Brühe 12–18 Min. weich köcheln.",
+        "Basis einrühren und einige Minuten erhitzen.",
+        "Falls gewünscht, Spinat einrühren, bis er heiß ist. Bei Bedarf Wasser ergänzen und mit Reis servieren."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "butter-chicken-style-curry",
+      "art": "rezept",
+      "name": "Cremiges Butter-Chicken-Style-Curry (vegan)",
+      "personen": 2,
+      "zeit": "20 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "butter-chicken-sauce", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "kichererbsen-dose", "menge": 200, "einheit": "g" },
+          { "zutat": "kichererbsen-gekocht", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "reis", "menge": 150, "einheit": "g" }
+        ] },
+        { "kategorie": "extra", "pflicht": false, "optionen": [
+          { "zutat": "kokosmilch", "menge": 100, "einheit": "ml" }
+        ] },
+        { "kategorie": "gruen", "pflicht": false, "optionen": [
+          { "zutat": "brokkoli", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [],
+      "weitere": [],
+      "schritte": [
+        "Reis kochen.",
+        "Sauce in einem Topf erhitzen.",
+        "Kichererbsen und, falls gewünscht, Brokkoli zugeben und 8–10 Min. sanft köcheln.",
+        "Falls gewünscht, Kokosmilch oder etwas Wasser einrühren und mit Reis servieren."
+      ],
+      "hinweise": [
+        "Vegan: Der Name beschreibt die würzige, cremige Sauce, es ist kein Hähnchen enthalten."
+      ]
+    },
+    {
+      "id": "chili-sin-carne",
+      "art": "rezept",
+      "name": "Chili sin Carne mit Reis",
+      "personen": 2,
+      "zeit": "25 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "kidneybohnen-dose", "menge": 200, "einheit": "g" },
+          { "zutat": "kidneybohnen-gekocht", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": true, "optionen": [
+          { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "reis", "menge": 150, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "oel" }
+      ],
+      "weitere": [
+        { "name": "Wasser", "menge": [100, 150], "einheit": "ml" }
+      ],
+      "schritte": [
+        "Reis kochen.",
+        "Gemüsemix in Öl leicht anbraten.",
+        "Basis, abgespülte Kidneybohnen und bei Bedarf Wasser zugeben.",
+        "10–15 Min. köcheln lassen und abschmecken."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "kartoffel-erbsen-curry",
+      "art": "rezept",
+      "name": "Kartoffel-Erbsen-Curry",
+      "personen": 2,
+      "zeit": "30 Min.",
+      "plaetze": [
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "kartoffeln", "menge": 400, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": true, "optionen": [
+          { "zutat": "erbsen", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gelb", "pflicht": false, "optionen": [
+          { "zutat": "reis", "menge": 120, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "oel" }
+      ],
+      "weitere": [
+        { "name": "Wasser oder Gemüsebrühe", "menge": [200, 300], "einheit": "ml" }
+      ],
+      "schritte": [
+        "Kartoffeln würfeln und in wenig Öl kurz anbraten.",
+        "Wasser oder Brühe zugeben und zugedeckt 15–20 Min. garen.",
+        "Basis und Erbsen zugeben und 5–8 Min. weitergaren.",
+        "Falls gewünscht, mit Reis servieren."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "gemuese-couscous-falafel",
+      "art": "rezept",
+      "name": "Gemüse-Couscous mit Falafel",
+      "personen": 2,
+      "zeit": "20 Min.",
+      "plaetze": [
+        { "kategorie": "braun", "pflicht": true, "optionen": [
+          { "zutat": "falafel", "menge": 6, "einheit": "Stück" }
+        ] },
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "couscous", "menge": 120, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": true, "optionen": [
+          { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "rot", "pflicht": false, "optionen": [
+          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
+          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "gemuesebruehe", "menge": [100, 200], "einheit": "ml" }
+      ],
+      "weitere": [],
+      "schritte": [
+        "Falafel im Ofen nach Packungsangabe vollständig erhitzen.",
+        "Gemüse erhitzen und nach Wunsch anbraten.",
+        "Couscous mit heißer Brühe übergießen und zugedeckt quellen lassen.",
+        "Alles anrichten, falls gewünscht mit erhitzter Tomatenbasis."
+      ],
+      "hinweise": []
+    },
+    {
+      "id": "pizza-paprika",
+      "art": "rezept",
+      "name": "Pizza mit Paprika-Zwiebel-Mix",
+      "personen": 2,
+      "zeit": "20 Min.",
+      "plaetze": [
+        { "kategorie": "gelb", "pflicht": true, "optionen": [
+          { "zutat": "pizzateiglinge", "menge": 2, "einheit": "Stück", "vorbereitung": "auftauen lassen (Packungsangabe)" }
+        ] },
+        { "kategorie": "rot", "pflicht": true, "optionen": [
+          { "zutat": "pizzasauce", "menge": 200, "einheit": "g" }
+        ] },
+        { "kategorie": "gruen", "pflicht": false, "optionen": [
+          { "zutat": "paprika-zwiebel-mix", "menge": 200, "einheit": "g" }
+        ] }
+      ],
+      "grundvorrat": [
+        { "zutat": "gewuerze", "name": "Kräuter" }
+      ],
+      "weitere": [
+        { "name": "Pflanzlicher Reibekäse", "menge": [50, 80], "einheit": "g", "optional": true }
+      ],
+      "schritte": [
+        "Teiglinge auftauen lassen.",
+        "Ausrollen und mit Sauce bestreichen.",
+        "Falls gewünscht, Gemüse und Käse verteilen.",
+        "Bei 220–240 °C je nach Teig 10–15 Min. backen."
+      ],
+      "hinweise": [
+        "Zum Einfrieren die Pizza vollständig abkühlen lassen und einzeln verpacken. Später gefroren im Ofen erhitzen, bis sie durchgehend heiß ist."
+      ],
+      "einfrieren": {
+        "stueckProZutat": "pizzateiglinge",
+        "fertiggericht": { "id": "tk-pizza", "name": "Selbstgemachte TK-Pizza", "einheit": "Stück" }
+      }
+    }
+  ]
+}

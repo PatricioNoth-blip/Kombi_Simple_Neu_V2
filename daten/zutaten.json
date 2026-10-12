@@ -1,0 +1,213 @@
+{
+  "version": 1,
+  "kategorien": [
+    { "id": "rot", "name": "Rot", "rolle": "Basis" },
+    { "id": "braun", "name": "Braun", "rolle": "Protein" },
+    { "id": "gruen", "name": "Grün", "rolle": "Gemüse" },
+    { "id": "gelb", "name": "Gelb", "rolle": "Sattmacher" },
+    { "id": "extra", "name": "Extra", "rolle": "Ergänzung" }
+  ],
+  "zutaten": [
+    {
+      "id": "bolognese-basis",
+      "name": "Tomaten-Bolognese-Basis",
+      "kategorie": "rot",
+      "lagerform": "TK-Block",
+      "einheit": "g",
+      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
+      "ganzeGebinde": true
+    },
+    {
+      "id": "curry-basis",
+      "name": "Milde Tomaten-Curry-Basis",
+      "kategorie": "rot",
+      "lagerform": "TK-Block",
+      "einheit": "g",
+      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
+      "ganzeGebinde": true
+    },
+    {
+      "id": "butter-chicken-sauce",
+      "name": "Butter-Chicken-Style-Sauce (vegan)",
+      "kategorie": "rot",
+      "lagerform": "TK-Block",
+      "einheit": "g",
+      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
+      "ganzeGebinde": true
+    },
+    {
+      "id": "pizzasauce",
+      "name": "Pizzasauce",
+      "kategorie": "rot",
+      "lagerform": "TK-Block",
+      "einheit": "g",
+      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
+      "ganzeGebinde": true
+    },
+    {
+      "id": "braune-linsen-trocken",
+      "name": "Braune Linsen, trocken",
+      "kategorie": "braun",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
+    },
+    {
+      "id": "rote-linsen-trocken",
+      "name": "Rote Linsen, trocken",
+      "kategorie": "braun",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
+    },
+    {
+      "id": "kichererbsen-trocken",
+      "name": "Kichererbsen, trocken",
+      "gruppe": "Kichererbsen",
+      "kategorie": "braun",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
+    },
+    {
+      "id": "kichererbsen-dose",
+      "name": "Kichererbsen aus der Dose",
+      "gruppe": "Kichererbsen",
+      "kategorie": "braun",
+      "lagerform": "Dose",
+      "einheit": "g",
+      "hinweis": "Menge = Abtropfgewicht",
+      "gebinde": { "name": "Dose", "mehrzahl": "Dosen", "menge": 240 }
+    },
+    {
+      "id": "kichererbsen-gekocht",
+      "name": "Kichererbsen, gekocht",
+      "gruppe": "Kichererbsen",
+      "kategorie": "braun",
+      "lagerform": "gekocht",
+      "einheit": "g"
+    },
+    {
+      "id": "kidneybohnen-dose",
+      "name": "Kidneybohnen aus der Dose",
+      "gruppe": "Kidneybohnen",
+      "kategorie": "braun",
+      "lagerform": "Dose",
+      "einheit": "g",
+      "hinweis": "Menge = Abtropfgewicht",
+      "gebinde": { "name": "Dose", "mehrzahl": "Dosen", "menge": 240 }
+    },
+    {
+      "id": "kidneybohnen-gekocht",
+      "name": "Kidneybohnen, gekocht",
+      "gruppe": "Kidneybohnen",
+      "kategorie": "braun",
+      "lagerform": "gekocht",
+      "einheit": "g"
+    },
+    {
+      "id": "falafel",
+      "name": "Falafel, fertig gebacken",
+      "kategorie": "braun",
+      "lagerform": "TK",
+      "einheit": "Stück"
+    },
+    {
+      "id": "gemuesemix",
+      "name": "Gemüsemix",
+      "kategorie": "gruen",
+      "lagerform": "TK",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "spinat",
+      "name": "Spinat",
+      "kategorie": "gruen",
+      "lagerform": "TK",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "brokkoli",
+      "name": "Brokkoli",
+      "kategorie": "gruen",
+      "lagerform": "TK",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "erbsen",
+      "name": "Erbsen",
+      "kategorie": "gruen",
+      "lagerform": "TK",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "paprika-zwiebel-mix",
+      "name": "Paprika-Zwiebel-Mix",
+      "kategorie": "gruen",
+      "lagerform": "TK",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "reis",
+      "name": "Reis",
+      "kategorie": "gelb",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 1000 }
+    },
+    {
+      "id": "nudeln",
+      "name": "Nudeln",
+      "kategorie": "gelb",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 1000 }
+    },
+    {
+      "id": "couscous",
+      "name": "Couscous",
+      "kategorie": "gelb",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
+    },
+    {
+      "id": "kartoffeln",
+      "name": "Kartoffeln",
+      "kategorie": "gelb",
+      "lagerform": "frisch",
+      "einheit": "g",
+      "gebinde": { "name": "Netz", "mehrzahl": "Netze", "menge": 1000 }
+    },
+    {
+      "id": "pizzateiglinge",
+      "name": "Pizzateiglinge",
+      "kategorie": "gelb",
+      "lagerform": "TK",
+      "einheit": "Stück"
+    },
+    {
+      "id": "kokosmilch",
+      "name": "Kokosmilch",
+      "kategorie": "extra",
+      "lagerform": "Dose",
+      "einheit": "ml",
+      "gebinde": { "name": "Dose", "mehrzahl": "Dosen", "menge": 400 }
+    }
+  ],
+  "grundvorrat": [
+    { "id": "zwiebeln", "name": "Zwiebeln" },
+    { "id": "knoblauch", "name": "Knoblauch" },
+    { "id": "oel", "name": "Öl" },
+    { "id": "salz", "name": "Salz" },
+    { "id": "pfeffer", "name": "Pfeffer" },
+    { "id": "gemuesebruehe", "name": "Gemüsebrühe" },
+    { "id": "gewuerze", "name": "Gewürze & Kräuter" },
+    { "id": "mehl", "name": "Mehl" }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "vorrat": {
+    "bolognese-basis": 800,
+    "curry-basis": 600,
+    "butter-chicken-sauce": 400,
+    "pizzasauce": 600,
+    "braune-linsen-trocken": 500,
+    "rote-linsen-trocken": 500,
+    "kichererbsen-trocken": 500,
+    "kichererbsen-dose": 480,
+    "kichererbsen-gekocht": 0,
+    "kidneybohnen-dose": 240,
+    "kidneybohnen-gekocht": 0,
+    "falafel": 8,
+    "gemuesemix": 800,
+    "spinat": 600,
+    "brokkoli": 400,
+    "erbsen": 400,
+    "paprika-zwiebel-mix": 400,
+    "reis": 1000,
+    "nudeln": 1000,
+    "couscous": 500,
+    "kartoffeln": 1000,
+    "pizzateiglinge": 4,
+    "kokosmilch": 400
+  },
+  "grundvorrat": {
+    "zwiebeln": true,
+    "knoblauch": true,
+    "oel": true,
+    "salz": true,
+    "pfeffer": true,
+    "gemuesebruehe": true,
+    "gewuerze": true,
+    "mehl": true
+  },
+  "fertiggerichte": [
+    { "id": "tk-pizza", "name": "Selbstgemachte TK-Pizza", "einheit": "Stück", "anzahl": 2 },
+    { "id": "gemuese-lasagne", "name": "Gemüse-Lasagne", "einheit": "Portionen", "anzahl": 2 },
+    { "id": "linsensuppe", "name": "Linsensuppe", "einheit": "Portionen", "anzahl": 2 }
+  ],
+  "zuletztGekocht": {}
+}
