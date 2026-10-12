@@ -14,7 +14,8 @@ und ohne Konten. Der Vorrat bleibt lokal auf dem Gerät.
 | `daten/zutaten.json` | Zutatenkatalog: Kategorie, Lagerform, Einheit, Gebindegröße, Grundvorrat |
 | `daten/rezepte.json` | Die festen Rezepte für 2 Personen, gegliedert in farbige Plätze mit erlaubten Optionen |
 | `daten/testbestand.json` | Realistischer Beispielvorrat zum Testen (gleiches Format wie der gespeicherte Vorrat) |
-| `tests/` | Automatische Prüfungen |
+| `js/logik.js` | Rechenlogik ohne Oberfläche: Einheiten, Personenanpassung, Rezeptprüfung, Verbrauch |
+| `tests/` | Automatische Prüfungen der Daten und der Rechenlogik |
 
 ## Rezeptformat
 
