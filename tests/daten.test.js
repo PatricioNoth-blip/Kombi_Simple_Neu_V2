@@ -12,7 +12,9 @@ const { rezepte } = lade('rezepte.json');
 const testbestand = lade('testbestand.json');
 
 const KATEGORIEN = new Set(katalog.kategorien.map((k) => k.id));
-const EINHEITEN = new Set(['g', 'ml', 'Stück']);
+const EINHEITEN = new Set(['g', 'ml', 'Stück', 'Scheiben']);
+const ZAEHL_EINHEITEN = new Set(['Stück', 'Scheiben']);
+const GRUNDVORRAT_GRUPPEN = new Set(['Grundzutaten', 'Gewürze', 'Würzhelfer']);
 const GRUNDVORRAT_EINHEITEN = new Set(['EL', 'TL', 'Prise', 'Stück', 'Zehe', 'g', 'ml']);
 const zutaten = new Map(katalog.zutaten.map((z) => [z.id, z]));
 const grundvorrat = new Map(katalog.grundvorrat.map((g) => [g.id, g]));
@@ -43,7 +45,10 @@ test('Zutatenkatalog: IDs eindeutig, Kategorien und Einheiten gültig', () => {
     }
     if (z.ganzeGebinde) assert.ok(z.gebinde, `${ort}: ganze Gebinde ohne Gebindegröße`);
   }
-  for (const g of katalog.grundvorrat) assert.ok(g.name, `Grundvorrat ${g.id}: Name fehlt`);
+  for (const g of katalog.grundvorrat) {
+    assert.ok(g.name, `Grundvorrat ${g.id}: Name fehlt`);
+    assert.ok(GRUNDVORRAT_GRUPPEN.has(g.gruppe), `Grundvorrat ${g.id}: unbekannte Gruppe`);
+  }
 });
 
 test('Rezepte: Aufbau, Zutaten und Einheiten passen zum Katalog', () => {
@@ -69,11 +74,12 @@ test('Rezepte: Aufbau, Zutaten und Einheiten passen zum Katalog', () => {
         assert.equal(z.kategorie, platz.kategorie, `${pOrt}: ${o.zutat} gehört nicht zu ${platz.kategorie}`);
         assert.equal(o.einheit, z.einheit, `${pOrt}: ${o.zutat} muss in ${z.einheit} angegeben sein`);
         assert.ok(typeof o.menge === 'number' && o.menge > 0, `${pOrt}: ${o.zutat} braucht eine feste Menge`);
-        if (z.einheit === 'Stück') assert.ok(Number.isInteger(o.menge), `${pOrt}: Stück nur ganzzahlig`);
+        if (ZAEHL_EINHEITEN.has(z.einheit)) assert.ok(Number.isInteger(o.menge), `${pOrt}: ${z.einheit} nur ganzzahlig`);
         if (z.ganzeGebinde) {
           assert.equal(o.menge % z.gebinde.menge, 0, `${pOrt}: ${o.zutat} nur in ganzen ${z.gebinde.mehrzahl}`);
         }
         if ('vorbereitung' in o) assert.ok(o.vorbereitung, `${pOrt}: leere Vorbereitung`);
+        if ('hinweis' in o) assert.ok(o.hinweis, `${pOrt}: leerer Hinweis`);
       }
     });
 
@@ -109,7 +115,7 @@ test('Testbestand passt zum Katalog', () => {
     'Testbestand muss genau die Katalogzutaten enthalten');
   for (const [id, menge] of Object.entries(testbestand.vorrat)) {
     assert.ok(typeof menge === 'number' && menge >= 0, `${id}: ungültige Menge`);
-    if (zutaten.get(id).einheit === 'Stück') assert.ok(Number.isInteger(menge), `${id}: Stück nur ganzzahlig`);
+    if (ZAEHL_EINHEITEN.has(zutaten.get(id).einheit)) assert.ok(Number.isInteger(menge), `${id}: nur ganzzahlig`);
   }
   assert.deepEqual(Object.keys(testbestand.grundvorrat).sort(), [...grundvorrat.keys()].sort());
   assert.ok(Object.values(testbestand.grundvorrat).every((v) => typeof v === 'boolean'));

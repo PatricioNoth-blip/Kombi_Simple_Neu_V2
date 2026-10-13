@@ -6,7 +6,7 @@
 
 import {
   erstelleKatalog, bestandAbgleichen, setzeMenge, setzeGrundvorrat, leseZahl,
-  formatMenge, vorratAnzeige, fertiggerichtSpeichern, fertiggerichtEntfernen,
+  formatMenge, vorratAnzeige, fertiggerichtSpeichern, fertiggerichtEntfernen, istZaehlEinheit,
 } from './logik.js';
 
 const SPEICHER_SCHLUESSEL = 'kombi-v2-bestand';
@@ -178,12 +178,16 @@ function fertiggerichteKarte() {
 function grundvorratKarte() {
   const eintraege = [...app.katalog.grundvorrat.values()];
   const da = eintraege.filter((g) => app.bestand.grundvorrat[g.id]).length;
-  const liste = eintraege.map((g) => `
+  const schalter = (g) => `
     <li><label class="zeile schalter-zeile">
       <span class="zeile-name">${esc(g.name)}</span>
       <input type="checkbox" class="schalter" data-aktion="grundvorrat" data-id="${esc(g.id)}"
         ${app.bestand.grundvorrat[g.id] ? 'checked' : ''}>
-    </label></li>`);
+    </label></li>`;
+  const gruppen = [...new Set(eintraege.map((g) => g.gruppe))];
+  const liste = gruppen.map((gruppe) => `
+    <li class="untertitel">${esc(gruppe)}</li>
+    ${eintraege.filter((g) => g.gruppe === gruppe).map(schalter).join('')}`);
   return `
     <section class="karte">
       <button class="karte-titel klappe" data-aktion="grundvorrat-klappe" aria-expanded="${app.grundvorratOffen}">
@@ -230,7 +234,7 @@ function oeffneZutaten(ids, titel) {
 // Schritt der Schnellknöpfe: ein Gebinde, sonst 1 Stück oder 100 g/ml.
 function schnellSchritt(z) {
   if (z.gebinde) return { menge: z.gebinde.menge, text: `1 ${z.gebinde.name}` };
-  if (z.einheit === 'Stück') return { menge: 1, text: '1' };
+  if (istZaehlEinheit(z.einheit)) return { menge: 1, text: '1' };
   return { menge: 100, text: formatMenge(100, z.einheit) };
 }
 
@@ -248,7 +252,7 @@ function zutatenSheet(s) {
         ${mehrere ? `<span class="feld-titel">${esc(z.name)}</span>` : ''}
         ${hinweise ? `<p class="klein">${esc(hinweise)}</p>` : ''}
         <div class="eingabe-zeile">
-          <input class="zahl" type="text" inputmode="${z.einheit === 'Stück' ? 'numeric' : 'decimal'}"
+          <input class="zahl" type="text" inputmode="${istZaehlEinheit(z.einheit) ? 'numeric' : 'decimal'}"
             autocomplete="off" data-feld="menge" data-id="${esc(id)}" value="${esc(zahlText(s.entwurf[id]))}"
             aria-label="Menge ${esc(z.name)} in ${esc(z.einheit)}">
           <span class="einheit">${esc(z.einheit)}</span>
@@ -406,7 +410,7 @@ document.addEventListener('input', (ereignis) => {
     const wert = leseZahl(el.value);
     el.classList.toggle('ungueltig', wert === null);
     if (wert === null) return;
-    s.entwurf[z.id] = z.einheit === 'Stück' ? Math.round(wert) : wert;
+    s.entwurf[z.id] = istZaehlEinheit(z.einheit) ? Math.round(wert) : wert;
     $(`[data-info="${z.id}"]`).textContent = vorratAnzeige(s.entwurf[z.id], z).gebinde ?? '';
   } else if (el.dataset.feld === 'name') {
     s.entwurf.name = el.value;

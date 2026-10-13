@@ -12,7 +12,14 @@
 export const KATEGORIE_REIHENFOLGE = ['rot', 'braun', 'gruen', 'gelb', 'extra'];
 
 const UMRECHNUNG = { kg: ['g', 1000], l: ['ml', 1000] };
-const BRUCH_EINHEITEN = new Set(['Stück', 'EL', 'TL', 'Prise', 'Zehe']);
+const ZAEHL_EINHEITEN = new Set(['Stück', 'Scheiben']);
+const BRUCH_EINHEITEN = new Set([...ZAEHL_EINHEITEN, 'EL', 'TL', 'Prise', 'Zehe']);
+const EINZAHL = { Scheiben: 'Scheibe' };
+// Bei diesen Lagerformen zeigt der Vorrat volle Gebinde und Reste.
+const GEZAEHLTE_GEBINDE = new Set(['Dose', 'Packung', 'TK-Block']);
+
+/** Stück und Scheiben werden nur ganzzahlig verwendet und aufgerundet. */
+export const istZaehlEinheit = (einheit) => ZAEHL_EINHEITEN.has(einheit);
 
 const runde = (x) => Math.round(x * 100) / 100;
 
@@ -110,7 +117,7 @@ export function bedarf(option, zutat, personen, basisPersonen = 2) {
     throw new Error(`Einheit ${option.einheit} passt nicht zu ${zutat.id} (${zutat.einheit})`);
   }
   const menge = skaliere(inLager, personen, basisPersonen);
-  return zutat.einheit === 'Stück' ? Math.ceil(menge) : menge;
+  return istZaehlEinheit(zutat.einheit) ? Math.ceil(menge) : menge;
 }
 
 /** Teilt einen Bestand in volle Gebinde und Rest auf, z. B. 280 g → 1 Dose + 40 g. */
@@ -151,17 +158,17 @@ export function formatMenge(menge, einheit, { runden = true } = {}) {
   if ((einheit === 'g' || einheit === 'ml') && m >= 1000) {
     return `${mitKomma(Math.round(m / 10) / 100)} ${einheit === 'g' ? 'kg' : 'l'}`;
   }
-  return `${mitKomma(m)} ${einheit}`;
+  return `${mitKomma(m)} ${m === '1' && EINZAHL[einheit] ? EINZAHL[einheit] : einheit}`;
 }
 
 /**
- * Anzeige einer Vorratsmenge: exakter Inhalt und – bei Dosen und TK-Blöcken –
- * die Gebinde, z. B. „280 g“ + „1 Dose + 40 g“.
+ * Anzeige einer Vorratsmenge: exakter Inhalt und – bei Dosen, Packungen und
+ * TK-Blöcken – die Gebinde, z. B. „280 g“ + „1 Dose + 40 g“.
  */
 export function vorratAnzeige(menge, zutat) {
   if (!(menge > 0)) return { leer: true, menge: 'leer', gebinde: null };
   const text = formatMenge(menge, zutat.einheit, { runden: false });
-  if (!zutat.gebinde || !['Dose', 'TK-Block'].includes(zutat.lagerform)) {
+  if (!zutat.gebinde || !GEZAEHLTE_GEBINDE.has(zutat.lagerform)) {
     return { leer: false, menge: text, gebinde: null };
   }
   const { voll, rest } = gebindeAufteilung(menge, zutat);
@@ -198,6 +205,7 @@ function pruefeOption(option, index, katalog, bestand, personen, basisPersonen) 
     fehlt: runde(Math.max(0, benoetigt - vorhanden)),
     reicht: vorhanden >= benoetigt,
     vorbereitung: option.vorbereitung ?? null,
+    hinweis: option.hinweis ?? null,
   };
 }
 
@@ -222,11 +230,11 @@ export function pruefeGericht(rezept, bestand, katalog, personen, auswahl = {}) 
   const plaetze = rezept.plaetze.map((platz, i) => {
     const optionen = platz.optionen.map((o, j) => pruefeOption(o, j, katalog, bestand, personen, basis));
     return {
+      ...waehleOption(optionen, auswahl[i]),
       platz: i,
       kategorie: platz.kategorie,
       pflicht: platz.pflicht,
-      hinweis: platz.hinweis ?? null,
-      ...waehleOption(optionen, auswahl[i]),
+      platzHinweis: platz.hinweis ?? null,
       optionen,
     };
   });

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "rezepte": [
     {
       "id": "linsen-bolognese",
@@ -9,10 +9,12 @@
       "zeit": "30–40 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "braun", "pflicht": true, "optionen": [
-          { "zutat": "braune-linsen-trocken", "menge": 150, "einheit": "g" }
+          { "zutat": "braune-linsen-trocken", "menge": 150, "einheit": "g" },
+          { "zutat": "braune-linsen-gekocht", "menge": 400, "einheit": "g", "hinweis": "nur erhitzen, nicht mehr garen" }
         ] },
         { "kategorie": "gelb", "pflicht": true, "optionen": [
           { "zutat": "nudeln", "menge": 180, "einheit": "g" }
@@ -21,17 +23,20 @@
           { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
         ] }
       ],
-      "grundvorrat": [],
+      "grundvorrat": [
+        { "zutat": "italienische-kraeuter", "menge": 1, "einheit": "TL" },
+        { "zutat": "knoblauch", "menge": 1, "einheit": "Zehe" }
+      ],
       "weitere": [
-        { "name": "Wasser oder Gemüsebrühe", "menge": [350, 450], "einheit": "ml" }
+        { "name": "Wasser oder Gemüsebrühe (für trockene Linsen)", "menge": [350, 450], "einheit": "ml" }
       ],
       "schritte": [
-        "Linsen in Wasser oder Brühe nach Packungsangabe weich garen.",
-        "Basis und, falls gewünscht, den Gemüsemix zugeben und 8–10 Min. köcheln, bis alles dampfend heiß ist.",
+        "Trockene Linsen in Wasser oder Brühe nach Packungsangabe weich garen (ca. 25–30 Min.).",
+        "Basis, Knoblauch, Kräuter und, falls gewünscht, den Gemüsemix zugeben und 8–10 Min. köcheln, bis alles dampfend heiß ist.",
         "Nudeln separat kochen und mit der Sauce servieren."
       ],
       "hinweise": [
-        "Die eingefrorene Basis ist bereits gewürzt."
+        "Die Basis ist ungewürzt – Kräuter und Knoblauch bringen die italienische Richtung."
       ]
     },
     {
@@ -51,23 +56,26 @@
           { "zutat": "paprika-zwiebel-mix", "menge": 200, "einheit": "g" }
         ] },
         { "kategorie": "rot", "pflicht": false, "hinweis": "als Dip", "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "mit etwas Zwiebel 10 Min. einköcheln" }
         ] }
       ],
       "grundvorrat": [
         { "zutat": "mehl", "menge": 1, "einheit": "EL" },
         { "zutat": "zwiebeln" },
         { "zutat": "knoblauch" },
-        { "zutat": "gewuerze" },
-        { "zutat": "gemuesebruehe" }
+        { "zutat": "kreuzkuemmel", "menge": 1, "einheit": "TL" },
+        { "zutat": "paprikapulver", "menge": 0.5, "einheit": "TL" },
+        { "zutat": "gemuesebruehe" },
+        { "zutat": "zitronensaft", "menge": 1, "einheit": "EL", "optional": true }
       ],
       "weitere": [],
       "schritte": [
         "Kichererbsen 12–18 Std. einweichen und abgießen, nicht kochen.",
-        "Roh fein zerkleinern, mit Zwiebel, Knoblauch, Gewürzen und Mehl binden und kleine Falafel formen.",
+        "Roh fein zerkleinern, mit Zwiebel, Knoblauch, Kreuzkümmel, Paprikapulver und Mehl binden und kleine Falafel formen.",
         "Bei 200 °C ca. 20–25 Min. backen, dabei einmal wenden.",
         "Couscous mit heißer Brühe übergießen und quellen lassen.",
-        "Falls gewünscht, Gemüse anbraten und die erhitzte Basis als Dip dazugeben."
+        "Falls gewünscht, Gemüse anbraten und die erhitzte Basis mit einer Prise Kreuzkümmel und etwas Zitronensaft als Dip dazugeben."
       ],
       "hinweise": [
         "Hier ist bewusst nur „trocken“ erlaubt: Falafel gelingen nur aus eingeweichten, ungekochten Kichererbsen. Die schnelle Variante mit TK-Falafel ist „Gemüse-Couscous mit Falafel“."
@@ -81,8 +89,8 @@
       "zeit": "20 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
-          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "braun", "pflicht": true, "optionen": [
           { "zutat": "kichererbsen-dose", "menge": 200, "einheit": "g" },
@@ -92,13 +100,15 @@
           { "zutat": "nudeln", "menge": 180, "einheit": "g" }
         ] }
       ],
-      "grundvorrat": [],
+      "grundvorrat": [
+        { "zutat": "italienische-kraeuter", "menge": 1, "einheit": "TL" }
+      ],
       "weitere": [
         { "name": "Nudelwasser", "menge": [100, 150], "einheit": "ml" }
       ],
       "schritte": [
         "Nudeln kochen und etwas Nudelwasser aufheben.",
-        "Basis erhitzen und die Kichererbsen zugeben. Kichererbsen aus der Dose vorher abgießen und abspülen.",
+        "Basis mit den Kräutern erhitzen und die Kichererbsen zugeben. Kichererbsen aus der Dose vorher abgießen und abspülen.",
         "8–10 Min. köcheln, bei Bedarf mit Nudelwasser verdünnen.",
         "Mit den Nudeln vermengen."
       ],
@@ -112,8 +122,8 @@
       "zeit": "20 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
-          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "gruen", "pflicht": true, "optionen": [
           { "zutat": "spinat", "menge": 200, "einheit": "g" }
@@ -123,13 +133,14 @@
         ] }
       ],
       "grundvorrat": [
+        { "zutat": "italienische-kraeuter", "menge": 1, "einheit": "TL" },
         { "zutat": "knoblauch", "optional": true },
-        { "zutat": "gewuerze", "name": "Chili", "optional": true }
+        { "zutat": "chili", "optional": true }
       ],
       "weitere": [],
       "schritte": [
         "Nudeln kochen.",
-        "Basis erhitzen.",
+        "Basis mit den Kräutern erhitzen.",
         "Spinat zugeben und garen, bis alles vollständig heiß ist.",
         "Abschmecken und mit den Nudeln servieren."
       ],
@@ -143,27 +154,34 @@
       "zeit": "25 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "braun", "pflicht": true, "optionen": [
           { "zutat": "rote-linsen-trocken", "menge": 150, "einheit": "g" }
         ] },
         { "kategorie": "gelb", "pflicht": true, "optionen": [
-          { "zutat": "reis", "menge": 150, "einheit": "g" }
+          { "zutat": "reis", "menge": 150, "einheit": "g" },
+          { "zutat": "brot", "menge": 4, "einheit": "Scheiben", "hinweis": "gefroren toasten" }
         ] },
         { "kategorie": "gruen", "pflicht": false, "optionen": [
           { "zutat": "spinat", "menge": 200, "einheit": "g" }
         ] }
       ],
-      "grundvorrat": [],
+      "grundvorrat": [
+        { "zutat": "oel", "menge": 1, "einheit": "EL" },
+        { "zutat": "currypulver", "menge": 1.5, "einheit": "TL" },
+        { "zutat": "kreuzkuemmel", "menge": 0.5, "einheit": "TL" }
+      ],
       "weitere": [
         { "name": "Wasser oder Gemüsebrühe", "menge": [350, 450], "einheit": "ml" }
       ],
       "schritte": [
-        "Reis kochen.",
-        "Linsen in Wasser oder Brühe 12–18 Min. weich köcheln.",
+        "Reis kochen oder Brot toasten.",
+        "Currypulver und Kreuzkümmel in Öl 30 Sek. anrösten.",
+        "Linsen und Wasser oder Brühe zugeben und 12–18 Min. weich köcheln.",
         "Basis einrühren und einige Minuten erhitzen.",
-        "Falls gewünscht, Spinat einrühren, bis er heiß ist. Bei Bedarf Wasser ergänzen und mit Reis servieren."
+        "Falls gewünscht, Spinat einrühren, bis er heiß ist. Bei Bedarf Wasser ergänzen und mit Reis oder Brot servieren."
       ],
       "hinweise": []
     },
@@ -175,7 +193,8 @@
       "zeit": "20 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "butter-chicken-sauce", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "braun", "pflicht": true, "optionen": [
           { "zutat": "kichererbsen-dose", "menge": 200, "einheit": "g" },
@@ -184,20 +203,25 @@
         { "kategorie": "gelb", "pflicht": true, "optionen": [
           { "zutat": "reis", "menge": 150, "einheit": "g" }
         ] },
-        { "kategorie": "extra", "pflicht": false, "optionen": [
+        { "kategorie": "extra", "pflicht": true, "optionen": [
           { "zutat": "kokosmilch", "menge": 100, "einheit": "ml" }
         ] },
         { "kategorie": "gruen", "pflicht": false, "optionen": [
           { "zutat": "brokkoli", "menge": 200, "einheit": "g" }
         ] }
       ],
-      "grundvorrat": [],
+      "grundvorrat": [
+        { "zutat": "oel", "menge": 1, "einheit": "EL" },
+        { "zutat": "currypulver", "menge": 1.5, "einheit": "TL" },
+        { "zutat": "kreuzkuemmel", "menge": 0.5, "einheit": "TL" },
+        { "zutat": "paprikapulver", "menge": 0.5, "einheit": "TL" }
+      ],
       "weitere": [],
       "schritte": [
         "Reis kochen.",
-        "Sauce in einem Topf erhitzen.",
-        "Kichererbsen und, falls gewünscht, Brokkoli zugeben und 8–10 Min. sanft köcheln.",
-        "Falls gewünscht, Kokosmilch oder etwas Wasser einrühren und mit Reis servieren."
+        "Currypulver, Kreuzkümmel und Paprikapulver in Öl 30 Sek. anrösten.",
+        "Basis, Kichererbsen und, falls gewünscht, Brokkoli zugeben und 8–10 Min. sanft köcheln.",
+        "Kokosmilch einrühren, kurz erhitzen und mit Reis servieren."
       ],
       "hinweise": [
         "Vegan: Der Name beschreibt die würzige, cremige Sauce, es ist kein Hähnchen enthalten."
@@ -211,32 +235,40 @@
       "zeit": "25 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "braun", "pflicht": true, "optionen": [
           { "zutat": "kidneybohnen-dose", "menge": 200, "einheit": "g" },
-          { "zutat": "kidneybohnen-gekocht", "menge": 200, "einheit": "g" }
+          { "zutat": "kidneybohnen-gekocht", "menge": 200, "einheit": "g" },
+          { "zutat": "kidneybohnen-trocken", "menge": 80, "einheit": "g", "vorbereitung": "über Nacht einweichen, mind. 10 Min. sprudelnd kochen, dann ca. 60 Min. garen" }
         ] },
         { "kategorie": "gruen", "pflicht": true, "optionen": [
           { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
         ] },
         { "kategorie": "gelb", "pflicht": true, "optionen": [
-          { "zutat": "reis", "menge": 150, "einheit": "g" }
+          { "zutat": "reis", "menge": 150, "einheit": "g" },
+          { "zutat": "broetchen", "menge": 4, "einheit": "Stück", "hinweis": "gefroren bei 180 °C ca. 10 Min. aufbacken" }
         ] }
       ],
       "grundvorrat": [
-        { "zutat": "oel" }
+        { "zutat": "oel" },
+        { "zutat": "kreuzkuemmel", "menge": 1, "einheit": "TL" },
+        { "zutat": "paprikapulver", "menge": 1, "einheit": "TL" },
+        { "zutat": "chili", "name": "Chili nach Geschmack" }
       ],
       "weitere": [
         { "name": "Wasser", "menge": [100, 150], "einheit": "ml" }
       ],
       "schritte": [
-        "Reis kochen.",
-        "Gemüsemix in Öl leicht anbraten.",
+        "Reis kochen oder Brötchen aufbacken.",
+        "Gemüsemix in Öl leicht anbraten, Kreuzkümmel, Paprikapulver und Chili kurz mitrösten.",
         "Basis, abgespülte Kidneybohnen und bei Bedarf Wasser zugeben.",
         "10–15 Min. köcheln lassen und abschmecken."
       ],
-      "hinweise": []
+      "hinweise": [
+        "Rohe Kidneybohnen sind giftig: Trockene Bohnen immer mindestens 10 Minuten sprudelnd kochen."
+      ]
     },
     {
       "id": "kartoffel-erbsen-curry",
@@ -246,7 +278,8 @@
       "zeit": "30 Min.",
       "plaetze": [
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "vorher 1 Zwiebel in Öl anschwitzen und 10 Min. länger köcheln" }
         ] },
         { "kategorie": "gelb", "pflicht": true, "optionen": [
           { "zutat": "kartoffeln", "menge": 400, "einheit": "g" }
@@ -259,13 +292,15 @@
         ] }
       ],
       "grundvorrat": [
-        { "zutat": "oel" }
+        { "zutat": "oel" },
+        { "zutat": "currypulver", "menge": 1.5, "einheit": "TL" },
+        { "zutat": "kreuzkuemmel", "menge": 0.5, "einheit": "TL" }
       ],
       "weitere": [
         { "name": "Wasser oder Gemüsebrühe", "menge": [200, 300], "einheit": "ml" }
       ],
       "schritte": [
-        "Kartoffeln würfeln und in wenig Öl kurz anbraten.",
+        "Kartoffeln würfeln und in wenig Öl kurz anbraten, Currypulver und Kreuzkümmel kurz mitrösten.",
         "Wasser oder Brühe zugeben und zugedeckt 15–20 Min. garen.",
         "Basis und Erbsen zugeben und 5–8 Min. weitergaren.",
         "Falls gewünscht, mit Reis servieren."
@@ -289,18 +324,20 @@
           { "zutat": "gemuesemix", "menge": 200, "einheit": "g" }
         ] },
         { "kategorie": "rot", "pflicht": false, "optionen": [
-          { "zutat": "curry-basis", "menge": 200, "einheit": "g" },
-          { "zutat": "bolognese-basis", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "mit etwas Zwiebel 10 Min. einköcheln" }
         ] }
       ],
       "grundvorrat": [
-        { "zutat": "gemuesebruehe", "menge": [100, 200], "einheit": "ml" }
+        { "zutat": "gemuesebruehe", "menge": [100, 200], "einheit": "ml" },
+        { "zutat": "kreuzkuemmel", "menge": 0.5, "einheit": "TL" },
+        { "zutat": "zitronensaft", "menge": 1, "einheit": "EL", "optional": true }
       ],
       "weitere": [],
       "schritte": [
         "Falafel im Ofen nach Packungsangabe vollständig erhitzen.",
-        "Gemüse erhitzen und nach Wunsch anbraten.",
-        "Couscous mit heißer Brühe übergießen und zugedeckt quellen lassen.",
+        "Gemüse erhitzen und mit Kreuzkümmel anbraten.",
+        "Couscous mit heißer Brühe übergießen und zugedeckt quellen lassen, falls gewünscht mit Zitronensaft abschmecken.",
         "Alles anrichten, falls gewünscht mit erhitzter Tomatenbasis."
       ],
       "hinweise": []
@@ -316,21 +353,22 @@
           { "zutat": "pizzateiglinge", "menge": 2, "einheit": "Stück", "vorbereitung": "auftauen lassen (Packungsangabe)" }
         ] },
         { "kategorie": "rot", "pflicht": true, "optionen": [
-          { "zutat": "pizzasauce", "menge": 200, "einheit": "g" }
+          { "zutat": "tomatenbasis", "menge": 200, "einheit": "g" },
+          { "zutat": "passierte-tomaten", "menge": 250, "einheit": "g", "hinweis": "mit Kräutern und etwas Salz verrühren, muss nicht gekocht werden" }
         ] },
         { "kategorie": "gruen", "pflicht": false, "optionen": [
           { "zutat": "paprika-zwiebel-mix", "menge": 200, "einheit": "g" }
         ] }
       ],
       "grundvorrat": [
-        { "zutat": "gewuerze", "name": "Kräuter" }
+        { "zutat": "italienische-kraeuter", "menge": 1, "einheit": "TL" }
       ],
       "weitere": [
         { "name": "Pflanzlicher Reibekäse", "menge": [50, 80], "einheit": "g", "optional": true }
       ],
       "schritte": [
         "Teiglinge auftauen lassen.",
-        "Ausrollen und mit Sauce bestreichen.",
+        "Basis mit den Kräutern verrühren, Teig ausrollen und mit der Sauce bestreichen.",
         "Falls gewünscht, Gemüse und Käse verteilen.",
         "Bei 220–240 °C je nach Teig 10–15 Min. backen."
       ],

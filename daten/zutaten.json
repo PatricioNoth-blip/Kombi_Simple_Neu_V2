@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "kategorien": [
     { "id": "rot", "name": "Rot", "rolle": "Basis" },
     { "id": "braun", "name": "Braun", "rolle": "Protein" },
@@ -9,48 +9,40 @@
   ],
   "zutaten": [
     {
-      "id": "bolognese-basis",
-      "name": "Tomaten-Bolognese-Basis",
+      "id": "tomatenbasis",
+      "name": "Neutrale Tomatenbasis",
       "kategorie": "rot",
       "lagerform": "TK-Block",
       "einheit": "g",
+      "hinweis": "selbst gekocht, ungewürzt",
       "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
       "ganzeGebinde": true
     },
     {
-      "id": "curry-basis",
-      "name": "Milde Tomaten-Curry-Basis",
+      "id": "passierte-tomaten",
+      "name": "Passierte Tomaten",
       "kategorie": "rot",
-      "lagerform": "TK-Block",
+      "lagerform": "Packung",
       "einheit": "g",
-      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
-      "ganzeGebinde": true
-    },
-    {
-      "id": "butter-chicken-sauce",
-      "name": "Butter-Chicken-Style-Sauce (vegan)",
-      "kategorie": "rot",
-      "lagerform": "TK-Block",
-      "einheit": "g",
-      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
-      "ganzeGebinde": true
-    },
-    {
-      "id": "pizzasauce",
-      "name": "Pizzasauce",
-      "kategorie": "rot",
-      "lagerform": "TK-Block",
-      "einheit": "g",
-      "gebinde": { "name": "Block", "mehrzahl": "Blöcke", "menge": 200 },
-      "ganzeGebinde": true
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
     },
     {
       "id": "braune-linsen-trocken",
       "name": "Braune Linsen, trocken",
+      "gruppe": "Braune Linsen",
       "kategorie": "braun",
       "lagerform": "trocken",
       "einheit": "g",
       "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
+    },
+    {
+      "id": "braune-linsen-gekocht",
+      "name": "Braune Linsen, gekocht",
+      "gruppe": "Braune Linsen",
+      "kategorie": "braun",
+      "lagerform": "gekocht",
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
     },
     {
       "id": "rote-linsen-trocken",
@@ -85,7 +77,17 @@
       "gruppe": "Kichererbsen",
       "kategorie": "braun",
       "lagerform": "gekocht",
-      "einheit": "g"
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
+    },
+    {
+      "id": "kidneybohnen-trocken",
+      "name": "Kidneybohnen, trocken",
+      "gruppe": "Kidneybohnen",
+      "kategorie": "braun",
+      "lagerform": "trocken",
+      "einheit": "g",
+      "gebinde": { "name": "Packung", "mehrzahl": "Packungen", "menge": 500 }
     },
     {
       "id": "kidneybohnen-dose",
@@ -103,7 +105,8 @@
       "gruppe": "Kidneybohnen",
       "kategorie": "braun",
       "lagerform": "gekocht",
-      "einheit": "g"
+      "einheit": "g",
+      "gebinde": { "name": "Portion", "mehrzahl": "Portionen", "menge": 200 }
     },
     {
       "id": "falafel",
@@ -185,6 +188,22 @@
       "gebinde": { "name": "Netz", "mehrzahl": "Netze", "menge": 1000 }
     },
     {
+      "id": "brot",
+      "name": "Brot, selbst gebacken",
+      "kategorie": "gelb",
+      "lagerform": "TK",
+      "einheit": "Scheiben",
+      "hinweis": "in Scheiben eingefroren, gefroren toasten"
+    },
+    {
+      "id": "broetchen",
+      "name": "Brötchen, selbst gebacken",
+      "kategorie": "gelb",
+      "lagerform": "TK",
+      "einheit": "Stück",
+      "hinweis": "gefroren bei 180 °C ca. 10 Min. aufbacken"
+    },
+    {
       "id": "pizzateiglinge",
       "name": "Pizzateiglinge",
       "kategorie": "gelb",
@@ -201,13 +220,20 @@
     }
   ],
   "grundvorrat": [
-    { "id": "zwiebeln", "name": "Zwiebeln" },
-    { "id": "knoblauch", "name": "Knoblauch" },
-    { "id": "oel", "name": "Öl" },
-    { "id": "salz", "name": "Salz" },
-    { "id": "pfeffer", "name": "Pfeffer" },
-    { "id": "gemuesebruehe", "name": "Gemüsebrühe" },
-    { "id": "gewuerze", "name": "Gewürze & Kräuter" },
-    { "id": "mehl", "name": "Mehl" }
+    { "id": "zwiebeln", "name": "Zwiebeln", "gruppe": "Grundzutaten" },
+    { "id": "knoblauch", "name": "Knoblauch", "gruppe": "Grundzutaten" },
+    { "id": "oel", "name": "Öl", "gruppe": "Grundzutaten" },
+    { "id": "salz", "name": "Salz", "gruppe": "Grundzutaten" },
+    { "id": "pfeffer", "name": "Pfeffer", "gruppe": "Grundzutaten" },
+    { "id": "gemuesebruehe", "name": "Gemüsebrühe", "gruppe": "Grundzutaten" },
+    { "id": "mehl", "name": "Mehl", "gruppe": "Grundzutaten" },
+    { "id": "italienische-kraeuter", "name": "Italienische Kräuter", "gruppe": "Gewürze" },
+    { "id": "currypulver", "name": "Currypulver", "gruppe": "Gewürze" },
+    { "id": "kreuzkuemmel", "name": "Kreuzkümmel", "gruppe": "Gewürze" },
+    { "id": "paprikapulver", "name": "Paprikapulver", "gruppe": "Gewürze" },
+    { "id": "chili", "name": "Chili", "gruppe": "Gewürze" },
+    { "id": "zimt", "name": "Zimt", "gruppe": "Gewürze" },
+    { "id": "sojasauce", "name": "Sojasauce", "gruppe": "Würzhelfer" },
+    { "id": "zitronensaft", "name": "Zitronensaft", "gruppe": "Würzhelfer" }
   ]
 }

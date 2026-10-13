@@ -76,12 +76,12 @@ test('Kokosmilch: aus einer 400-ml-Dose bleiben nach 100 ml genau 300 ml', () =>
 
 test('TK-Blöcke: geprüft wird die echte Menge, vorgeschlagen werden ganze Blöcke', () => {
   const e = pruefeGericht(rezept(4), testbestand, katalog, 3);
-  assert.equal(platzFuer(e, 'curry-basis').bedarf, 300);
+  assert.equal(platzFuer(e, 'tomatenbasis').bedarf, 300);
   const vorschlag = Object.fromEntries(verbrauchsVorschlag(e, katalog).map((p) => [p.zutat, p.menge]));
-  assert.deepEqual(vorschlag, { 'curry-basis': 400, spinat: 300, nudeln: 270 });
+  assert.deepEqual(vorschlag, { tomatenbasis: 400, spinat: 300, nudeln: 270 });
 
   // 1 Block + 100 g Rest reichen für 300 g; vorgeschlagen wird nie mehr als vorhanden.
-  const knapp = pruefeGericht(rezept(4), mit({ 'curry-basis': 300 }), katalog, 3);
+  const knapp = pruefeGericht(rezept(4), mit({ tomatenbasis: 300 }), katalog, 3);
   assert.equal(knapp.status, 'jetzt');
   assert.equal(verbrauchsVorschlag(knapp, katalog)[0].menge, 300);
 });
@@ -89,19 +89,21 @@ test('TK-Blöcke: geprüft wird die echte Menge, vorgeschlagen werden ganze Blö
 test('Personenzahl: Spinat-Tomaten-Pasta für 4 Personen', () => {
   const e = pruefeGericht(rezept(4), testbestand, katalog, 4);
   assert.deepEqual(e.plaetze.map((p) => [p.zutat, p.bedarf]),
-    [['curry-basis', 400], ['spinat', 400], ['nudeln', 360]]);
+    [['tomatenbasis', 400], ['spinat', 400], ['nudeln', 360]]);
 });
 
 test('Nur 100 g Tomatenbasis: Rezept zeigt 100 g fehlende Basis', () => {
-  const e = pruefeGericht(rezept(3), mit({ 'curry-basis': 100, 'bolognese-basis': 0 }), katalog, 2);
+  const e = pruefeGericht(rezept(3), mit({ tomatenbasis: 100, 'passierte-tomaten': 0 }), katalog, 2);
   assert.equal(e.status, 'fehlt');
-  assert.deepEqual(fehlmengen(e), [['curry-basis', 100, 100, 200]]);
+  assert.deepEqual(fehlmengen(e), [['tomatenbasis', 100, 100, 200]]);
 });
 
 test('Alternative Basis: eine der erlaubten Basen genügt', () => {
-  const e = pruefeGericht(rezept(3), mit({ 'curry-basis': 0 }), katalog, 2);
+  const e = pruefeGericht(rezept(3), mit({ tomatenbasis: 0 }), katalog, 2);
   assert.equal(e.status, 'jetzt');
-  assert.equal(e.plaetze[0].zutat, 'bolognese-basis');
+  assert.equal(e.plaetze[0].zutat, 'passierte-tomaten');
+  assert.equal(e.plaetze[0].bedarf, 250);
+  assert.match(e.plaetze[0].hinweis, /Zwiebel/);
 });
 
 test('Optionale Zutaten blockieren nie: Dal ohne Spinat ist möglich', () => {
@@ -137,7 +139,7 @@ test('Grundvorrat: ausgeschaltet blockiert, optional nicht', () => {
   assert.equal(pruefeGericht(rezept(4), ohne, katalog, 2).status, 'jetzt');
 });
 
-test('Stück-Zutaten werden auf ganze Stück aufgerundet', () => {
+test('Stück und Scheiben werden auf ganze Stück aufgerundet', () => {
   assert.equal(pruefeGericht(rezept(9), testbestand, katalog, 3).plaetze[0].bedarf, 9);
   assert.equal(pruefeGericht(rezept(9), testbestand, katalog, 1).plaetze[0].bedarf, 3);
   assert.equal(pruefeGericht(rezept(10), testbestand, katalog, 3).plaetze[0].bedarf, 3);
@@ -147,7 +149,7 @@ test('Stück-Zutaten werden auf ganze Stück aufgerundet', () => {
 test('Pizza: eingefroren wird zum Fertiggericht, gegessen zählt herunter', () => {
   const b = koche(testbestand, 10, { eingefroren: true });
   assert.equal(b.vorrat.pizzateiglinge, 2);
-  assert.equal(b.vorrat.pizzasauce, 400);
+  assert.equal(b.vorrat.tomatenbasis, 1400);
   assert.equal(b.fertiggerichte.find((f) => f.id === 'tk-pizza').anzahl, 4);
 
   const ohnePizza = { ...testbestand, fertiggerichte: [] };
@@ -175,7 +177,7 @@ test('Bestand fällt nie unter 0', () => {
 });
 
 test('„Fehlt etwas“ ist nach Anzahl fehlender Zutaten sortiert', () => {
-  const b = mit({ reis: 0, falafel: 0, 'kidneybohnen-dose': 0 });
+  const b = mit({ reis: 0, brot: 0, broetchen: 0, falafel: 0, 'kidneybohnen-dose': 0 });
   const e = pruefeAlle(rezepte, b, katalog, 2);
   assert.deepEqual(ids(e.fehlt), nr(5, 6, 9, 7));
   assert.equal(e.fehlt[3].fehlt.length, 2);
@@ -221,8 +223,12 @@ test('Vorratsanzeige: Inhalt und Gebinde getrennt', () => {
   assert.deepEqual(vorratAnzeige(280, z('kichererbsen-dose')), { leer: false, menge: '280 g', gebinde: '1 Dose + 40 g' });
   assert.equal(vorratAnzeige(40, z('kichererbsen-dose')).gebinde, 'angebrochen');
   assert.equal(vorratAnzeige(300, z('kokosmilch')).gebinde, 'angebrochen');
-  assert.equal(vorratAnzeige(800, z('bolognese-basis')).gebinde, '4 Blöcke');
-  assert.equal(vorratAnzeige(200, z('bolognese-basis')).gebinde, '1 Block');
+  assert.equal(vorratAnzeige(800, z('tomatenbasis')).gebinde, '4 Blöcke');
+  assert.equal(vorratAnzeige(200, z('tomatenbasis')).gebinde, '1 Block');
+  assert.equal(vorratAnzeige(500, z('passierte-tomaten')).gebinde, '1 Packung');
+  assert.equal(vorratAnzeige(250, z('passierte-tomaten')).gebinde, 'angebrochen');
+  assert.equal(vorratAnzeige(8, z('brot')).menge, '8 Scheiben');
+  assert.equal(vorratAnzeige(1, z('brot')).menge, '1 Scheibe');
   assert.deepEqual(vorratAnzeige(1000, z('reis')), { leer: false, menge: '1 kg', gebinde: null });
   assert.equal(vorratAnzeige(8, z('falafel')).menge, '8 Stück');
   assert.equal(vorratAnzeige(0, z('spinat')).leer, true);
@@ -271,4 +277,37 @@ test('Vorrat und Fertiggerichte bearbeiten, ohne das Original zu verändern', ()
   b = fertiggerichtEntfernen(b, 'fg-1');
   assert.deepEqual(b.fertiggerichte, testbestand.fertiggerichte);
   assert.deepEqual(testbestand, vorher);
+});
+
+test('Brot und Brötchen als Alternative zu Reis', () => {
+  const ohneReis = mit({ reis: 0 });
+  const dal = pruefeGericht(rezept(5), ohneReis, katalog, 3);
+  assert.equal(dal.status, 'jetzt');
+  assert.deepEqual([platzFuer(dal, 'brot').bedarf, platzFuer(dal, 'brot').einheit], [6, 'Scheiben']);
+  const chili = pruefeGericht(rezept(7), ohneReis, katalog, 2);
+  assert.equal(platzFuer(chili, 'broetchen').bedarf, 4);
+  // Mit Reis im Vorrat bleibt Reis die erste Wahl.
+  assert.equal(pruefeGericht(rezept(5), testbestand, katalog, 2).plaetze[2].zutat, 'reis');
+});
+
+test('Trockene Kidneybohnen nur als ausdrücklich erlaubte Option mit Vorbereitung', () => {
+  const nurTrocken = mit({ 'kidneybohnen-dose': 0, 'kidneybohnen-trocken': 500 });
+  const e = pruefeGericht(rezept(7), nurTrocken, katalog, 2);
+  assert.equal(e.status, 'vorbereitung');
+  assert.deepEqual(e.vorbereitung.map((v) => [v.zutat, v.bedarf]), [['kidneybohnen-trocken', 80]]);
+});
+
+test('Gewürze: ausgeschaltetes Pflichtgewürz blockiert, optionales nicht', () => {
+  const ohneCurry = { ...testbestand, grundvorrat: { ...testbestand.grundvorrat, currypulver: false, chili: false } };
+  const dal = pruefeGericht(rezept(5), ohneCurry, katalog, 2);
+  assert.deepEqual(dal.fehlt.map((f) => f.name), ['Currypulver']);
+  assert.equal(pruefeGericht(rezept(4), ohneCurry, katalog, 2).status, 'jetzt', 'Chili ist bei der Spinat-Pasta optional');
+});
+
+test('Platz-Hinweis und Options-Hinweis bleiben getrennt', () => {
+  const e = pruefeGericht(rezept(2), mit({ tomatenbasis: 0 }), katalog, 2);
+  const dip = e.plaetze.find((p) => p.kategorie === 'rot');
+  assert.equal(dip.platzHinweis, 'als Dip');
+  assert.equal(dip.zutat, 'passierte-tomaten');
+  assert.match(dip.hinweis, /einköcheln/);
 });

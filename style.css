@@ -469,3 +469,15 @@ button.zeile-neu::after { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Zwischenüberschrift innerhalb einer Liste (z. B. Gewürze im Grundvorrat) */
+.liste .untertitel {
+  padding: 14px 16px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.liste .untertitel + li .zeile { background-image: none; }
