@@ -23,10 +23,17 @@ export const istZaehlEinheit = (einheit) => ZAEHL_EINHEITEN.has(einheit);
 
 const runde = (x) => Math.round(x * 100) / 100;
 
-function heute() {
+/** Heutiges Datum als „JJJJ-MM-TT“ in der Zeitzone des Geräts. */
+export function heute() {
   const d = new Date();
   const zwei = (n) => String(n).padStart(2, '0');
   return `${d.getFullYear()}-${zwei(d.getMonth() + 1)}-${zwei(d.getDate())}`;
+}
+
+/** Ganze Tage zwischen zwei Daten im Format „JJJJ-MM-TT“. */
+export function tageSeit(datum, bis = heute()) {
+  const tag = (text) => Date.UTC(...text.split('-').map(Number).map((n, i) => (i === 1 ? n - 1 : n)));
+  return Math.round((tag(bis) - tag(datum)) / 86400000);
 }
 
 // ---------------------------------------------------------------- Katalog
@@ -281,9 +288,12 @@ export function pruefeGericht(rezept, bestand, katalog, personen, auswahl = {}) 
   };
 }
 
-/** Prüft alle Gerichte. „Fehlt etwas“ ist nach Anzahl fehlender Zutaten sortiert. */
-export function pruefeAlle(rezepte, bestand, katalog, personen) {
-  const ergebnisse = rezepte.map((r) => pruefeGericht(r, bestand, katalog, personen));
+/**
+ * Prüft alle Gerichte. „Fehlt etwas“ ist nach Anzahl fehlender Zutaten sortiert.
+ * auswahl: { rezeptId: { platzIndex: optionIndex } } aus der Detailansicht.
+ */
+export function pruefeAlle(rezepte, bestand, katalog, personen, auswahl = {}) {
+  const ergebnisse = rezepte.map((r) => pruefeGericht(r, bestand, katalog, personen, auswahl[r.id]));
   return {
     jetzt: ergebnisse.filter((e) => e.status === 'jetzt'),
     vorbereitung: ergebnisse.filter((e) => e.status === 'vorbereitung'),

@@ -8,7 +8,7 @@ import {
   leseZahl, inEinheit, formatMenge, gebindeAufteilung, vorratAnzeige,
   rezeptBausteine, pruefeGericht, pruefeAlle, verbrauchsVorschlag,
   zieheVerbrauchAb, kochenBestaetigen, fertiggerichtGegessen, aendereFertiggericht,
-  fertiggerichtSpeichern, fertiggerichtEntfernen,
+  fertiggerichtSpeichern, fertiggerichtEntfernen, tageSeit,
 } from '../js/logik.js';
 
 const lade = (datei) =>
@@ -310,4 +310,19 @@ test('Platz-Hinweis und Options-Hinweis bleiben getrennt', () => {
   assert.equal(dip.platzHinweis, 'als Dip');
   assert.equal(dip.zutat, 'passierte-tomaten');
   assert.match(dip.hinweis, /einköcheln/);
+});
+
+test('Auswahl aus der Detailansicht wirkt auch in der Übersicht', () => {
+  // Brot statt Reis beim Dal, aber kein Brot da → das Dal fehlt.
+  const auswahl = { 'rotes-linsen-dal': { 2: 1 } };
+  const e = pruefeAlle(rezepte, mit({ brot: 0 }), katalog, 2, auswahl);
+  assert.deepEqual(ids(e.fehlt), nr(5));
+  assert.deepEqual(fehlmengen(e.fehlt[0]), [['brot', 4, 0, 4]]);
+});
+
+test('Tage seit dem letzten Kochen', () => {
+  assert.equal(tageSeit('2026-10-12', '2026-10-12'), 0);
+  assert.equal(tageSeit('2026-10-11', '2026-10-12'), 1);
+  assert.equal(tageSeit('2026-09-28', '2026-10-12'), 14);
+  assert.equal(tageSeit('2026-03-28', '2026-03-30'), 2, 'Zeitumstellung zählt nicht');
 });

@@ -8,6 +8,8 @@ import {
   erstelleKatalog, bestandAbgleichen, setzeMenge, setzeGrundvorrat, leseZahl,
   formatMenge, vorratAnzeige, fertiggerichtSpeichern, fertiggerichtEntfernen, istZaehlEinheit,
 } from './logik.js';
+import { esc, zahlText, anzahlText } from './html.js';
+import { kochenAnsicht, rezeptAnsicht } from './kochen.js';
 
 const SPEICHER_SCHLUESSEL = 'kombi-v2-bestand';
 
@@ -16,20 +18,17 @@ const app = {
   rezepte: [],
   testbestand: null,
   bestand: null,
-  tab: 'vorrat',
+  route: { tab: 'kochen', rezept: null },
+  personen: 2, // startet bei jedem Öffnen wieder mit 2
+  auswahl: {}, // { rezeptId: { platzIndex: optionIndex } }, nur für diese Sitzung
+  kochenScroll: 0,
+  vonKochen: false,
   grundvorratOffen: false,
   sheet: null,
   speicherFehler: false,
 };
 
 const $ = (selektor) => document.querySelector(selektor);
-
-const esc = (text) => String(text).replace(/[&<>"']/g, (c) =>
-  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-const zahlText = (x) => String(x).replace('.', ',');
-
-const anzahlText = (n, einheit) => (n === 1 && einheit === 'Portionen' ? '1 Portion' : `${n} ${einheit}`);
 
 // ---------------------------------------------------------------- Speicher
 
@@ -62,26 +61,44 @@ const vorratIstLeer = () =>
 
 // ---------------------------------------------------------------- Ansichten
 
+// -------------------------------------------------------------- Navigation
+// Die Ansicht steht in der Adresse (#kochen, #vorrat, #rezept/<id>), damit
+// Zurück-Geste und Neuladen funktionieren.
+
+function leseRoute() {
+  const ziel = decodeURIComponent(location.hash.slice(1));
+  if (ziel === 'vorrat') return { tab: 'vorrat', rezept: null };
+  if (ziel.startsWith('rezept/')) {
+    const id = ziel.slice('rezept/'.length);
+    if (app.rezepte.some((r) => r.id === id)) return { tab: 'kochen', rezept: id };
+  }
+  return { tab: 'kochen', rezept: null };
+}
+
+function routeGewechselt() {
+  const vorher = app.route;
+  app.route = leseRoute();
+  app.sheet = null;
+  render();
+  const zurueckZurUebersicht = vorher.rezept && !app.route.rezept && app.route.tab === 'kochen';
+  window.scrollTo(0, zurueckZurUebersicht ? app.kochenScroll : 0);
+  if (!app.route.rezept) app.vonKochen = false;
+}
+
 function render() {
-  $('#inhalt').innerHTML = (app.speicherFehler ? speicherBanner() : '') +
-    (app.tab === 'vorrat' ? vorratAnsicht() : kochenAnsicht());
+  let ansicht;
+  if (app.route.tab === 'vorrat') ansicht = vorratAnsicht();
+  else if (app.route.rezept) ansicht = rezeptAnsicht(app, app.route.rezept);
+  else ansicht = kochenAnsicht(app);
+  $('#inhalt').innerHTML = (app.speicherFehler ? speicherBanner() : '') + ansicht;
   for (const tab of document.querySelectorAll('[data-tab]')) {
-    tab.setAttribute('aria-current', tab.dataset.tab === app.tab ? 'page' : 'false');
+    tab.setAttribute('aria-current', tab.dataset.tab === app.route.tab ? 'page' : 'false');
   }
   renderSheet();
 }
 
 const speicherBanner = () =>
   '<p class="banner">Der Vorrat kann auf diesem Gerät gerade nicht gespeichert werden. Änderungen gehen beim Schließen verloren.</p>';
-
-function kochenAnsicht() {
-  return `
-    <header class="kopf"><h1>Kochen</h1></header>
-    <section class="karte hinweis-karte">
-      <p><strong>Kommt im nächsten Schritt.</strong></p>
-      <p>Hier erscheinen bald die Gerichte, die mit deinem Vorrat möglich sind.</p>
-    </section>`;
-}
 
 function vorratAnsicht() {
   return `
@@ -336,11 +353,28 @@ document.addEventListener('click', (ereignis) => {
   const s = app.sheet;
   switch (el.dataset.aktion) {
     case 'tab':
-      app.tab = el.dataset.tab;
-      app.sheet = null;
-      render();
-      window.scrollTo(0, 0);
+      if (location.hash === `#${el.dataset.tab}`) routeGewechselt();
+      else location.hash = el.dataset.tab;
       break;
+    case 'rezept':
+      app.kochenScroll = window.scrollY;
+      app.vonKochen = true;
+      location.hash = `rezept/${encodeURIComponent(el.dataset.id)}`;
+      break;
+    case 'zurueck':
+      if (app.vonKochen) history.back();
+      else location.hash = 'kochen';
+      break;
+    case 'personen':
+      app.personen = Math.min(8, Math.max(1, app.personen + Number(el.dataset.delta)));
+      render();
+      break;
+    case 'wahl': {
+      const id = el.dataset.rezept;
+      app.auswahl[id] = { ...app.auswahl[id], [el.dataset.platz]: Number(el.dataset.option) };
+      render();
+      break;
+    }
     case 'zutat':
       oeffneZutaten(el.dataset.ids.split(','), el.dataset.titel);
       break;
@@ -444,6 +478,8 @@ async function start() {
     return;
   }
   app.bestand = bestandAbgleichen(ladeGespeichert(), app.katalog);
+  app.route = leseRoute();
+  window.addEventListener('hashchange', routeGewechselt);
   render();
 }
 

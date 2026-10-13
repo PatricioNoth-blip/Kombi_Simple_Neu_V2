@@ -12,7 +12,9 @@ und ohne Konten. Der Vorrat bleibt lokal auf dem Gerät.
 | Pfad | Inhalt |
 |---|---|
 | `index.html`, `style.css` | Grundgerüst und Gestaltung (hell und dunkel) |
-| `js/app.js` | Oberfläche: Bildschirme, Bedienung, Speichern im Gerät |
+| `js/app.js` | Oberfläche: Navigation, Vorrat-Bildschirm, Bedienung, Speichern im Gerät |
+| `js/kochen.js` | Kochen-Bildschirm und Rezeptdetail (nur Darstellung) |
+| `js/html.js` | Kleine Hilfen zum sicheren Zusammensetzen von HTML |
 | `daten/zutaten.json` | Zutatenkatalog: Kategorie, Lagerform, Einheit, Gebindegröße, Grundvorrat |
 | `daten/rezepte.json` | Die festen Rezepte für 2 Personen, gegliedert in farbige Plätze mit erlaubten Optionen |
 | `daten/testbestand.json` | Realistischer Beispielvorrat zum Testen (gleiches Format wie der gespeicherte Vorrat) |
