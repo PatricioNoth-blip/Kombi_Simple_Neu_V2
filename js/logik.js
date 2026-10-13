@@ -43,7 +43,50 @@ export function neuerBestand(katalog) {
   };
 }
 
+/**
+ * Bringt einen gespeicherten oder importierten Bestand auf den Stand des
+ * Katalogs: fehlende Zutaten mit 0, unbekannte oder ungültige Werte verworfen.
+ */
+export function bestandAbgleichen(gespeichert, katalog) {
+  const neu = neuerBestand(katalog);
+  if (!gespeichert || typeof gespeichert !== 'object') return neu;
+  for (const id of katalog.zutaten.keys()) {
+    const m = gespeichert.vorrat?.[id];
+    if (typeof m === 'number' && m >= 0) neu.vorrat[id] = m;
+  }
+  for (const id of katalog.grundvorrat.keys()) {
+    const da = gespeichert.grundvorrat?.[id];
+    if (typeof da === 'boolean') neu.grundvorrat[id] = da;
+  }
+  if (Array.isArray(gespeichert.fertiggerichte)) {
+    neu.fertiggerichte = gespeichert.fertiggerichte
+      .filter((f) => f && f.id && f.name)
+      .map((f) => ({
+        id: String(f.id),
+        name: String(f.name),
+        einheit: f.einheit === 'Portionen' ? 'Portionen' : 'Stück',
+        anzahl: Number.isInteger(f.anzahl) && f.anzahl >= 0 ? f.anzahl : 0,
+      }));
+  }
+  if (gespeichert.zuletztGekocht && typeof gespeichert.zuletztGekocht === 'object') {
+    neu.zuletztGekocht = { ...gespeichert.zuletztGekocht };
+  }
+  return neu;
+}
+
+export const setzeMenge = (bestand, id, menge) =>
+  ({ ...bestand, vorrat: { ...bestand.vorrat, [id]: runde(Math.max(0, menge)) } });
+
+export const setzeGrundvorrat = (bestand, id, vorhanden) =>
+  ({ ...bestand, grundvorrat: { ...bestand.grundvorrat, [id]: vorhanden } });
+
 // --------------------------------------------------- Einheiten und Mengen
+
+/** Liest eine Eingabe wie „480“ oder „1,5“. Ungültig oder negativ: null. */
+export function leseZahl(text) {
+  const t = String(text).trim().replace(',', '.');
+  return /^(\d+(\.\d*)?|\.\d+)$/.test(t) ? Number(t) : null;
+}
 
 /** Rechnet nur g ↔ kg und ml ↔ l um. Alles andere ist unvereinbar: null. */
 export function inEinheit(menge, von, nach) {
@@ -109,6 +152,26 @@ export function formatMenge(menge, einheit, { runden = true } = {}) {
     return `${mitKomma(Math.round(m / 10) / 100)} ${einheit === 'g' ? 'kg' : 'l'}`;
   }
   return `${mitKomma(m)} ${einheit}`;
+}
+
+/**
+ * Anzeige einer Vorratsmenge: exakter Inhalt und – bei Dosen und TK-Blöcken –
+ * die Gebinde, z. B. „280 g“ + „1 Dose + 40 g“.
+ */
+export function vorratAnzeige(menge, zutat) {
+  if (!(menge > 0)) return { leer: true, menge: 'leer', gebinde: null };
+  const text = formatMenge(menge, zutat.einheit, { runden: false });
+  if (!zutat.gebinde || !['Dose', 'TK-Block'].includes(zutat.lagerform)) {
+    return { leer: false, menge: text, gebinde: null };
+  }
+  const { voll, rest } = gebindeAufteilung(menge, zutat);
+  const g = zutat.gebinde;
+  let gebinde = 'angebrochen';
+  if (voll > 0) {
+    gebinde = `${voll} ${voll === 1 ? g.name : g.mehrzahl}`;
+    if (rest > 0) gebinde += ` + ${formatMenge(rest, zutat.einheit, { runden: false })}`;
+  }
+  return { leer: false, menge: text, gebinde };
 }
 
 // ---------------------------------------------------------- Rezeptprüfung
@@ -273,6 +336,18 @@ export function aendereFertiggericht(bestand, id, delta, vorlage) {
 }
 
 export const fertiggerichtGegessen = (bestand, id) => aendereFertiggericht(bestand, id, -1);
+
+/** Legt ein Fertiggericht an oder ersetzt es (gleiche id). */
+export function fertiggerichtSpeichern(bestand, gericht) {
+  const liste = bestand.fertiggerichte ?? [];
+  const neu = liste.some((f) => f.id === gericht.id)
+    ? liste.map((f) => (f.id === gericht.id ? { ...gericht } : f))
+    : [...liste, { ...gericht }];
+  return { ...bestand, fertiggerichte: neu };
+}
+
+export const fertiggerichtEntfernen = (bestand, id) =>
+  ({ ...bestand, fertiggerichte: (bestand.fertiggerichte ?? []).filter((f) => f.id !== id) });
 
 /** Anzahl, die beim Einfrieren als Fertiggericht dazukommt (z. B. Pizzen = verwendete Teiglinge). */
 export function einfrierenAnzahl(rezept, posten) {

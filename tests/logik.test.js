@@ -4,9 +4,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  erstelleKatalog, neuerBestand, inEinheit, formatMenge, gebindeAufteilung,
+  erstelleKatalog, neuerBestand, bestandAbgleichen, setzeMenge, setzeGrundvorrat,
+  leseZahl, inEinheit, formatMenge, gebindeAufteilung, vorratAnzeige,
   rezeptBausteine, pruefeGericht, pruefeAlle, verbrauchsVorschlag,
   zieheVerbrauchAb, kochenBestaetigen, fertiggerichtGegessen, aendereFertiggericht,
+  fertiggerichtSpeichern, fertiggerichtEntfernen,
 } from '../js/logik.js';
 
 const lade = (datei) =>
@@ -211,4 +213,62 @@ test('Neuer Bestand: alle Mengen 0, Grundvorrat vorhanden', () => {
   assert.ok(Object.values(b.vorrat).every((m) => m === 0));
   assert.ok(Object.values(b.grundvorrat).every((v) => v === true));
   assert.deepEqual(b.fertiggerichte, []);
+});
+
+test('Vorratsanzeige: Inhalt und Gebinde getrennt', () => {
+  const z = (id) => katalog.zutaten.get(id);
+  assert.deepEqual(vorratAnzeige(480, z('kichererbsen-dose')), { leer: false, menge: '480 g', gebinde: '2 Dosen' });
+  assert.deepEqual(vorratAnzeige(280, z('kichererbsen-dose')), { leer: false, menge: '280 g', gebinde: '1 Dose + 40 g' });
+  assert.equal(vorratAnzeige(40, z('kichererbsen-dose')).gebinde, 'angebrochen');
+  assert.equal(vorratAnzeige(300, z('kokosmilch')).gebinde, 'angebrochen');
+  assert.equal(vorratAnzeige(800, z('bolognese-basis')).gebinde, '4 Blöcke');
+  assert.equal(vorratAnzeige(200, z('bolognese-basis')).gebinde, '1 Block');
+  assert.deepEqual(vorratAnzeige(1000, z('reis')), { leer: false, menge: '1 kg', gebinde: null });
+  assert.equal(vorratAnzeige(8, z('falafel')).menge, '8 Stück');
+  assert.equal(vorratAnzeige(0, z('spinat')).leer, true);
+});
+
+test('Eingaben: Zahlen mit Komma, ungültige Eingaben werden erkannt', () => {
+  assert.equal(leseZahl('480'), 480);
+  assert.equal(leseZahl(' 1,5 '), 1.5);
+  assert.equal(leseZahl('1.'), 1);
+  assert.equal(leseZahl(''), null);
+  assert.equal(leseZahl('-3'), null);
+  assert.equal(leseZahl('abc'), null);
+});
+
+test('Gespeicherter Bestand wird mit dem Katalog abgeglichen', () => {
+  const alt = {
+    vorrat: { reis: 750, nudeln: -5, 'gibt-es-nicht': 3 },
+    grundvorrat: { salz: false, oel: 'ja' },
+    fertiggerichte: [{ id: 'x', name: 'Suppe', einheit: 'Portionen', anzahl: 2 }, { name: 'ohne id' }],
+    zuletztGekocht: { 'chili-sin-carne': '2026-10-01' },
+  };
+  const b = bestandAbgleichen(alt, katalog);
+  assert.equal(b.vorrat.reis, 750);
+  assert.equal(b.vorrat.nudeln, 0, 'ungültige Menge wird 0');
+  assert.equal(b.vorrat.spinat, 0, 'neue Katalogzutat wird ergänzt');
+  assert.ok(!('gibt-es-nicht' in b.vorrat));
+  assert.equal(b.grundvorrat.salz, false);
+  assert.equal(b.grundvorrat.oel, true, 'ungültiger Schalter bleibt vorhanden');
+  assert.deepEqual(b.fertiggerichte, [{ id: 'x', name: 'Suppe', einheit: 'Portionen', anzahl: 2 }]);
+  assert.equal(b.zuletztGekocht['chili-sin-carne'], '2026-10-01');
+  assert.deepEqual(bestandAbgleichen(null, katalog), neuerBestand(katalog));
+  assert.deepEqual(bestandAbgleichen(testbestand, katalog), testbestand, 'Testbestand bleibt unverändert');
+});
+
+test('Vorrat und Fertiggerichte bearbeiten, ohne das Original zu verändern', () => {
+  const vorher = structuredClone(testbestand);
+  assert.equal(setzeMenge(testbestand, 'reis', 1240).vorrat.reis, 1240);
+  assert.equal(setzeMenge(testbestand, 'reis', -10).vorrat.reis, 0);
+  assert.equal(setzeGrundvorrat(testbestand, 'mehl', false).grundvorrat.mehl, false);
+
+  const suppe = { id: 'fg-1', name: 'Gemüsesuppe', einheit: 'Portionen', anzahl: 3 };
+  let b = fertiggerichtSpeichern(testbestand, suppe);
+  assert.equal(b.fertiggerichte.length, 4);
+  b = fertiggerichtSpeichern(b, { ...suppe, anzahl: 1 });
+  assert.equal(b.fertiggerichte.find((f) => f.id === 'fg-1').anzahl, 1);
+  b = fertiggerichtEntfernen(b, 'fg-1');
+  assert.deepEqual(b.fertiggerichte, testbestand.fertiggerichte);
+  assert.deepEqual(testbestand, vorher);
 });

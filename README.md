@@ -11,6 +11,8 @@ und ohne Konten. Der Vorrat bleibt lokal auf dem Gerät.
 
 | Pfad | Inhalt |
 |---|---|
+| `index.html`, `style.css` | Grundgerüst und Gestaltung (hell und dunkel) |
+| `js/app.js` | Oberfläche: Bildschirme, Bedienung, Speichern im Gerät |
 | `daten/zutaten.json` | Zutatenkatalog: Kategorie, Lagerform, Einheit, Gebindegröße, Grundvorrat |
 | `daten/rezepte.json` | Die festen Rezepte für 2 Personen, gegliedert in farbige Plätze mit erlaubten Optionen |
 | `daten/testbestand.json` | Realistischer Beispielvorrat zum Testen (gleiches Format wie der gespeicherte Vorrat) |
@@ -25,6 +27,17 @@ Mehrere Optionen bedeuten „eine davon genügt“, z. B. Kichererbsen aus der D
 **oder** gekocht. Eine Form, die nicht genannt ist, setzt die App nie voraus.
 
 Spätere Kombi-Vorlagen nutzen dasselbe Format, nur mit mehr Auswahl je Platz.
+
+## Lokal starten
+
+Die App lädt ihre Daten per `fetch`, braucht also einen kleinen Webserver:
+
+```sh
+python3 -m http.server 8000
+```
+
+Dann `http://localhost:8000` öffnen. Der Vorrat wird im Browser des Geräts
+gespeichert (`localStorage`).
 
 ## Tests
 
