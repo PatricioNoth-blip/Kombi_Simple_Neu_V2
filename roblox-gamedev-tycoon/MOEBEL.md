@@ -3,84 +3,84 @@
 Entwurf, noch nicht im Spiel umgesetzt. Alles ist von Anfang an kaufbar, es gibt keine Freischalt-Stufen. Gebremst wird nur durch den Preis.
 
 **Preisklassen:** `$` günstig, `$$$$$` Endgame. Die genauen Zahlen berechnet später eine Formel aus den Vorteilen.
-**Größe:** Breite × Tiefe in Grid-Zellen. Wände stehen auf den Zellkanten.
+**Größe:** noch nicht festgelegt, kommt später. Wände stehen auf den Zellkanten im Grid.
 
 ## Möbel
 
 ### Arbeitsplätze
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Klapptisch | 2×1 | 1 Platz | $ |
-| Holz-Schreibtisch | 2×1 | 1 Platz, kleines Tempo | $ |
-| Steh-Schreibtisch | 2×1 | 1 Platz, Tempo, Moral | $$ |
-| Dual-Monitor-Platz | 2×1 | 1 Platz, Technologie, Grafik | $$$ |
-| Workstation Pro | 2×2 | 1 Platz, Technologie, Design und Sound stark | $$$$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Klapptisch | 1 Platz | $ |
+| Holz-Schreibtisch | 1 Platz, kleines Tempo | $ |
+| Steh-Schreibtisch | 1 Platz, Tempo, Moral | $$ |
+| Dual-Monitor-Platz | 1 Platz, Technologie, Grafik | $$$ |
+| Workstation Pro | 1 Platz, Technologie, Design und Sound stark | $$$$$ |
 
 ### Stühle
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Klappstuhl | 1×1 | Moral klein | $ |
-| Bürostuhl | 1×1 | Tempo, Moral | $$ |
-| Ergonomischer Stuhl | 1×1 | Tempo, Moral, weniger Stress (weniger Bugs) | $$$ |
-| Gaming-Stuhl | 1×1 | Moral stark, Grafik, Ruhm | $$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Klappstuhl | Moral klein | $ |
+| Bürostuhl | Tempo, Moral | $$ |
+| Ergonomischer Stuhl | Tempo, Moral, weniger Stress (weniger Bugs) | $$$ |
+| Gaming-Stuhl | Moral stark, Grafik, Ruhm | $$$ |
 
 ### Technik und Design
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Server-Rack | 1×2 | Technologie, Tempo | $$$ |
-| Grafiktablett-Ecke | 1×1 | Grafik | $$ |
-| Moodboard-Tafel | 1×1 | Welt und Atmosphäre | $$$ |
-| Storyboard-Tisch | 2×1 | Story und Dialoge | $$$ |
-| Gameplay-Prototyp-Tisch | 2×1 | Spielmechanik und Level | $$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Server-Rack | Technologie, Tempo | $$$ |
+| Grafiktablett-Ecke | Grafik | $$ |
+| Moodboard-Tafel | Welt und Atmosphäre | $$$ |
+| Storyboard-Tisch | Story und Dialoge | $$$ |
+| Gameplay-Prototyp-Tisch | Spielmechanik und Level | $$$ |
 
 ### Sound
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Mikrofon-Ecke | 2×1 | Sound | $$ |
-| Synthesizer-Setup | 2×1 | Sound stark, Ruhm | $$$$ |
-| Aufnahmekabine | 2×2 | Sound sehr stark | $$$$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Mikrofon-Ecke | Sound | $$ |
+| Synthesizer-Setup | Sound stark, Ruhm | $$$$ |
+| Aufnahmekabine | Sound sehr stark | $$$$$ |
 
 ### Qualität (Bugs früher sehen)
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Alter Test-Laptop | 1×1 | grobe Schätzung der Bugs vor dem Release | $ |
-| Testgeräte-Wand | 2×1 | genauere Schätzung | $$$ |
-| QA-Tisch | 2×1 | genaue Bug-Zahl | $$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Alter Test-Laptop | grobe Schätzung der Bugs vor dem Release | $ |
+| Testgeräte-Wand | genauere Schätzung | $$$ |
+| QA-Tisch | genaue Bug-Zahl | $$$ |
 
 ### Forschung
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Bücherregal | 1×1 | Forschung | $ |
-| Lernplatz | 2×1 | Mitarbeiter lernen schneller | $$ |
-| Forschungs-Labortisch | 2×1 | Forschung stark | $$$$ |
-| Hardware-Lab-Werkbank | 2×2 | schaltet Konsolen-Entwicklung frei | $$$$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Bücherregal | Forschung | $ |
+| Lernplatz | Mitarbeiter lernen schneller | $$ |
+| Forschungs-Labortisch | Forschung stark | $$$$ |
+| Hardware-Lab-Werkbank | schaltet Konsolen-Entwicklung frei | $$$$$ |
 
 ### Stimmung der Mitarbeiter
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Zimmerpflanze | 1×1 | Moral | $ |
-| Mini-Kühlschrank | 1×1 | Moral | $ |
-| Kaffeemaschine | 1×1 | Moral, Tempo | $$ |
-| Sofa | 2×1 | Moral stark | $$ |
-| Kickertisch | 2×1 | Moral sehr stark, Ruhm | $$$ |
-| Klimaanlage | 1×1 | Moral, Tempo | $$$ |
-| Ruheraum-Kapsel | 1×2 | Moral sehr stark, baut Erschöpfung ab | $$$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Zimmerpflanze | Moral | $ |
+| Mini-Kühlschrank | Moral | $ |
+| Kaffeemaschine | Moral, Tempo | $$ |
+| Sofa | Moral stark | $$ |
+| Kickertisch | Moral sehr stark, Ruhm | $$$ |
+| Klimaanlage | Moral, Tempo | $$$ |
+| Ruheraum-Kapsel | Moral sehr stark, baut Erschöpfung ab | $$$$ |
 
 ### Ruhm und Hype
 
-| Möbel | Größe | Vorteil | Preis |
-|---|---|---|---|
-| Retro-Poster | 1×1 | Ruhm klein | $ |
-| Pokal-Vitrine | 1×1 | Ruhm | $$$ |
-| Marketing-Tisch | 2×1 | Hype | $$$$ |
-| Award-Regal | 1×1 | Ruhm stark, wächst mit gewonnenen Preisen | $$$$$ |
+| Möbel | Vorteil | Preis |
+|---|---|---|
+| Retro-Poster | Ruhm klein | $ |
+| Pokal-Vitrine | Ruhm | $$$ |
+| Marketing-Tisch | Hype | $$$$ |
+| Award-Regal | Ruhm stark, wächst mit gewonnenen Preisen | $$$$$ |
 
 ## Wände (auf den Zellkanten)
 
